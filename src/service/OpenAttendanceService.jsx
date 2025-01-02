@@ -3,7 +3,10 @@ import axios from "axios";
 export const OpenAttendanceService = {
     async getOpenAttendancesData() {
         const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/open-attendance`, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            },
         });
         return res.data; 
     },

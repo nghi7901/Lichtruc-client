@@ -102,6 +102,7 @@ const LateStatistics = () => {
                 credentials: 'include',
                 method: 'POST',
                 headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ schoolYear: selectedSchoolYear, semester: selectedSemester })
@@ -194,7 +195,7 @@ const LateStatistics = () => {
                                 <Tag
                                     value={data.totals.totalLeaveEarly}
                                     severity="warning"
-                                    style={{fontSize: '1.25rem'}}
+                                    style={{ fontSize: '1.25rem' }}
                                 />
                             </div>
                         </div>
@@ -204,7 +205,7 @@ const LateStatistics = () => {
                                 <Tag
                                     value={data.totals.totalLate}
                                     severity="warning"
-                                    style={{fontSize: '1.25rem'}}
+                                    style={{ fontSize: '1.25rem' }}
                                 />
                             </div>
                         </div>
@@ -214,18 +215,18 @@ const LateStatistics = () => {
                                 <Tag
                                     value={data.totals.totalNoCheckout}
                                     severity="warning"
-                                    style={{fontSize: '1.25rem'}}
+                                    style={{ fontSize: '1.25rem' }}
                                 />
                             </div>
                         </div>
-                        
+
                     </>
                 ) : (null)}
             </div>
 
             <div className="card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div/>
+                    <div />
                     <Button
                         onClick={handleExportExcel}
                         style={{ fontSize: '12px' }}

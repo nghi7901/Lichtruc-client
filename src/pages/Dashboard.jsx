@@ -11,10 +11,17 @@ const Dashboard = () => {
     const { isAuthenticated } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
+    const queryParams = new URLSearchParams(location.search);
+    const token = queryParams.get('token');
 
     const fetchUserData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/user`, { withCredentials: true });
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/user`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                withCredentials: true
+            });
             if (response.status === 200) {
                 localStorage.getItem('user');
                 localStorage.getItem('isAuthenticated');

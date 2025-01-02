@@ -21,8 +21,8 @@ const Login = () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/user`, { withCredentials: true });
             if (response.status === 200) {
-                sessionStorage.getItem('user');
-                sessionStorage.getItem('isAuthenticated');
+                localStorage.getItem('user');
+                localStorage.getItem('isAuthenticated');
             }
         } catch (error) {
             console.error('Error fetching user data:', error);

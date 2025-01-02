@@ -4,7 +4,10 @@ export const StatisticsService = {
     async getStatisticsData(schoolYear, semester) {
         const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/statistics/overview`, {
             params: { schoolYear, semester },
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            },
         });
         return res.data;
     },
@@ -24,7 +27,8 @@ export const StatisticsService = {
     async getLateStatisticsData(schoolYear, semester) {
         const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/statistics/late`, {
             params: { schoolYear, semester },
-            withCredentials: true
+            withCredentials: true,
+            
         });
         return res.data;
     },

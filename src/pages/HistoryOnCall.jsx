@@ -91,6 +91,9 @@ const HistoryOnCall = () => {
 
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/oncall-schedule/schedules/`, {
                 withCredentials: true,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                },
                 params: { schoolYear, semester },
             });
 
@@ -107,13 +110,10 @@ const HistoryOnCall = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
+            getSchoolYearAndSemester();
             fetchData();
         }
     }, [isAuthenticated]);
-
-    useEffect(() => {
-        getSchoolYearAndSemester();
-    }, []);
 
     useEffect(() => {
         if (selectedSchoolYear && selectedSemester) {
@@ -150,6 +150,7 @@ const HistoryOnCall = () => {
                 credentials: 'include',
                 method: 'POST',
                 headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ schoolYear: selectedSchoolYear, semester: selectedSemester })
@@ -559,7 +560,7 @@ const HistoryOnCall = () => {
                                                             const checkoutTimeUTC = schedule.checkoutTime ? new Date(schedule.checkoutTime) : null;
 
                                                             if (schedule.attendance) {
-                                                                if (checkinTimeUTC && new Date(checkinTimeUTC) > lateThresholdUTC  && checkoutTimeUTC) {
+                                                                if (checkinTimeUTC && new Date(checkinTimeUTC) > lateThresholdUTC && checkoutTimeUTC) {
                                                                     return (
                                                                         <div key={i} className="schedule-cell">
                                                                             <span className="customize-data">

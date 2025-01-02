@@ -4,7 +4,10 @@ export const UserService = {
     async getUsersData() {
         console.log(`${process.env.REACT_APP_SERVER_URL}/users/`);
         const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/`, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            },
         });
         return res.data; 
     },

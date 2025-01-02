@@ -138,6 +138,9 @@ const SchedulerCalendar = () => {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/oncall-schedule/`, {
                 params: { userId, schoolYear, semester },
                 withCredentials: true,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                },
             });
 
             const data = response.data;
@@ -198,7 +201,10 @@ const SchedulerCalendar = () => {
             const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/request-schedule/`, {
                 credentials: 'include',
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                },
                 body: JSON.stringify(requestData)
             });
             const data = await response.json();

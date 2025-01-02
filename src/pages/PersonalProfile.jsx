@@ -126,6 +126,7 @@ export default function PersonalProfile() {
                 credentials: 'include',
                 method: 'PUT',
                 headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -168,11 +169,11 @@ export default function PersonalProfile() {
 
         if (name === 'phoneNumber') {
             const phoneRegex = /^[0-9]{8,15}$/;
-            
+
             if (value.trim() !== '' && !phoneRegex.test(value)) {
                 setPhoneError('Số điện thoại không hợp lệ. Vui lòng nhập từ 8 đến 15 chữ số!');
             } else {
-                setPhoneError(''); 
+                setPhoneError('');
             }
         }
 

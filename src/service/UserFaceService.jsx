@@ -3,7 +3,10 @@ import axios from "axios";
 export const UserFaceService = {
     async getUsersFaceData() {
         const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/images/`, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            },
         });
         return res.data;
     },

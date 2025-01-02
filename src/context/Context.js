@@ -8,16 +8,18 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null); 
+    const [accessToken, setAccessToken] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        const storedUser = sessionStorage.getItem('user');
-        const storedIsAuthenticated = sessionStorage.getItem('isAuthenticated');
+        const storedUser = localStorage.getItem('user');
+        const storedIsAuthenticated = localStorage.getItem('isAuthenticated');
         
         if (storedUser && storedIsAuthenticated === 'true') {
             setUser(JSON.parse(storedUser));
             setIsAuthenticated(true);
+            setAccessToken(JSON.parse(storedUser).accessToken);
         }
     }, []);
 
@@ -30,9 +32,11 @@ export const AuthProvider = ({ children }) => {
             if (userData.isActive) {
                 setIsAuthenticated(true);
                 setUser(userData);
+                setAccessToken(userData.accessToken)
 
-                sessionStorage.setItem('user', JSON.stringify(userData));
-                sessionStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('user', JSON.stringify(userData));
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('accessToken', JSON.stringify(userData).accessToken);
 
                 window.location.href = redirectUrl; 
             } else {
@@ -47,15 +51,17 @@ export const AuthProvider = ({ children }) => {
         await axios.get(`${process.env.REACT_APP_SERVER_URL}/logout`, { withCredentials: true });
         setIsAuthenticated(false);
         setUser(null);
+        setAccessToken(null);
 
-        sessionStorage.removeItem('user');
-        sessionStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('user');
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('accessToken');
 
         window.location.href = '/login'; 
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, login, logout, setIsAuthenticated, setUser }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, login, logout, setIsAuthenticated, setUser, accessToken, setAccessToken }}>
             {children}
         </AuthContext.Provider>
     );

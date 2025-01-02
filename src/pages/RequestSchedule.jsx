@@ -136,6 +136,9 @@ const RequestSchedule = () => {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/request-schedule`, {
                 params: { userId, schoolYear, semester },
                 withCredentials: true,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                },
             });
 
             const data = response.data;
@@ -265,6 +268,7 @@ const RequestSchedule = () => {
                 credentials: 'include',
                 method: 'PUT',
                 headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(reqData),
@@ -310,6 +314,7 @@ const RequestSchedule = () => {
                 credentials: 'include',
                 method: 'PUT',
                 headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(reqData),
@@ -351,6 +356,7 @@ const RequestSchedule = () => {
                 credentials: 'include',
                 method: 'DELETE',
                 headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
             });
