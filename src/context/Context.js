@@ -13,8 +13,8 @@ export const AuthProvider = ({ children }) => {
     const location = useLocation();
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        const storedIsAuthenticated = localStorage.getItem('isAuthenticated');
+        const storedUser = sessionStorage.getItem('user');
+        const storedIsAuthenticated = sessionStorage.getItem('isAuthenticated');
         
         if (storedUser && storedIsAuthenticated === 'true') {
             setUser(JSON.parse(storedUser));
@@ -34,9 +34,9 @@ export const AuthProvider = ({ children }) => {
                 setUser(userData);
                 setAccessToken(userData.accessToken)
 
-                localStorage.setItem('user', JSON.stringify(userData));
-                localStorage.setItem('isAuthenticated', 'true');
-                localStorage.setItem('accessToken', JSON.stringify(userData).accessToken);
+                sessionStorage.setItem('user', JSON.stringify(userData));
+                sessionStorage.setItem('isAuthenticated', 'true');
+                sessionStorage.setItem('accessToken', JSON.stringify(userData).accessToken);
 
                 window.location.href = redirectUrl; 
             } else {
@@ -53,9 +53,9 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         setAccessToken(null);
 
-        localStorage.removeItem('user');
-        localStorage.removeItem('isAuthenticated');
-        localStorage.removeItem('accessToken');
+        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('isAuthenticated');
+        sessionStorage.removeItem('accessToken');
 
         window.location.href = '/login'; 
     };

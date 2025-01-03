@@ -139,7 +139,7 @@ const SchedulerCalendar = () => {
                 params: { userId, schoolYear, semester },
                 withCredentials: true,
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                 },
             });
 
@@ -203,7 +203,7 @@ const SchedulerCalendar = () => {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                 },
                 body: JSON.stringify(requestData)
             });

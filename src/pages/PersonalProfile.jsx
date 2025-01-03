@@ -126,7 +126,7 @@ export default function PersonalProfile() {
                 credentials: 'include',
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({

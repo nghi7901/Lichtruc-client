@@ -23,8 +23,8 @@ const Dashboard = () => {
                 withCredentials: true
             });
             if (response.status === 200) {
-                localStorage.getItem('user');
-                localStorage.getItem('isAuthenticated');
+                sessionStorage.getItem('user');
+                sessionStorage.getItem('isAuthenticated');
             }
         } catch (error) {
             console.error('Error fetching user data:', error);

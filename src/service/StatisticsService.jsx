@@ -6,7 +6,7 @@ export const StatisticsService = {
             params: { schoolYear, semester },
             withCredentials: true,
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
             },
         });
         return res.data;

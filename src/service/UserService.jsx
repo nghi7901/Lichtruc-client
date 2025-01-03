@@ -6,7 +6,7 @@ export const UserService = {
         const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/`, {
             withCredentials: true,
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
             },
         });
         return res.data; 

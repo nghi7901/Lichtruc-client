@@ -20,9 +20,9 @@ const ProtectedRoute = ({ children, requiredRoles }) => {
                 const userData = response.data.user;
                 setUser(userData);
                 setIsAuthenticated(true);
-                localStorage.setItem('user', JSON.stringify(userData));
-                localStorage.setItem('isAuthenticated', 'true');
-                localStorage.setItem('accessToken', token); 
+                sessionStorage.setItem('user', JSON.stringify(userData));
+                sessionStorage.setItem('isAuthenticated', 'true');
+                sessionStorage.setItem('accessToken', token); 
             }
         } catch (error) {
             console.error('Error fetching user data:', error);
@@ -38,9 +38,9 @@ const ProtectedRoute = ({ children, requiredRoles }) => {
         if (token) {
             fetchUserData(token);
         } else {
-            const storedUser = localStorage.getItem('user');
-            const storedIsAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-            const storedToken = localStorage.getItem('accessToken');
+            const storedUser = sessionStorage.getItem('user');
+            const storedIsAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
+            const storedToken = sessionStorage.getItem('accessToken');
 
             if (storedIsAuthenticated && storedUser && storedToken) {
                 setUser(JSON.parse(storedUser));

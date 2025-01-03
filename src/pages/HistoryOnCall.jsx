@@ -92,7 +92,7 @@ const HistoryOnCall = () => {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/oncall-schedule/schedules/`, {
                 withCredentials: true,
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                 },
                 params: { schoolYear, semester },
             });
@@ -150,7 +150,7 @@ const HistoryOnCall = () => {
                 credentials: 'include',
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ schoolYear: selectedSchoolYear, semester: selectedSemester })

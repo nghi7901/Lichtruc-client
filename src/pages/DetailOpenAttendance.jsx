@@ -84,7 +84,7 @@ const DetailOpenAttendance = () => {
             const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/register-schedule?openId=${openId}&userId=${user._id}`, {
                 credentials: 'include',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                 },
             });
             if (!response.ok) {
@@ -124,7 +124,7 @@ const DetailOpenAttendance = () => {
                 credentials: 'include',
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(attendanceData),
@@ -149,7 +149,7 @@ const DetailOpenAttendance = () => {
                 {
                     credentials: 'include',
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                     },
                 });
             if (!response.ok) {
@@ -207,7 +207,7 @@ const DetailOpenAttendance = () => {
                 credentials: 'include',
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(registerData),
@@ -270,7 +270,7 @@ const DetailOpenAttendance = () => {
                 credentials: 'include',
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(registerData),
@@ -315,7 +315,7 @@ const DetailOpenAttendance = () => {
                 credentials: 'include',
                 method: 'DELETE',
                 headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
             });
@@ -557,7 +557,7 @@ const DetailOpenAttendance = () => {
                 credentials: 'include',
                 method: 'POST',
                 headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ openId })
