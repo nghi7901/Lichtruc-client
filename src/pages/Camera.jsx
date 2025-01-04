@@ -70,8 +70,8 @@ const Camera = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/open-attendance/get-by-date`, {
           headers: {
-            'Authorization': `Bearer ${token}`
-        },
+            'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
+    },
           withCredentials: true
         });
         if (response.data.error) {
